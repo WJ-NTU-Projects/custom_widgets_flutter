@@ -7,6 +7,7 @@ class ManyIcons {
   static IconData tabNavigation = Platform.isIOS ? CupertinoIcons.location_fill : Icons.navigation;
   static IconData tabSteps = Icons.directions_walk;
   static IconData tabGroups = Platform.isIOS ? CupertinoIcons.group_solid : Icons.group;
+  static IconData tabProfile = Platform.isIOS ? CupertinoIcons.profile_circled : Icons.account_circle_outlined;
   static IconData tabSettings = Platform.isIOS ? CupertinoIcons.settings_solid : Icons.settings;
   static IconData checkCircled = Platform.isIOS ? CupertinoIcons.checkmark_circle_fill : Icons.check_circle;
   static IconData exclamationTriangle = Platform.isIOS ? CupertinoIcons.exclamationmark_triangle_fill : Icons.warning;
