@@ -11,7 +11,7 @@ class AnIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color iconColor = color ?? (MediaQuery.of(context).platformBrightness == Brightness.dark ? (button ? TEXT_COLOR : TEXT_COLOR_DARK) : (button ? TEXT_COLOR_DARK : TEXT_COLOR));
+    final Color iconColor = color ?? getColor(context, button ? ColorType.BUTTON_TEXT : ColorType.TEXT);
     return Icon(icon, size: DEFAULT_ICON_SIZE, color: iconColor);
   }
 }

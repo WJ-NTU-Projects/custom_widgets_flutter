@@ -6,56 +6,75 @@ import 'package:flutter/material.dart';
 import '../custom_widgets_wj.dart';
 import 'external/cupertino_list_tile.dart';
 
+EdgeInsetsGeometry get _standardButtonMargin => EdgeInsets.symmetric(vertical: DEFAULT_MARGIN * 0.5, horizontal: DEFAULT_MARGIN);
+EdgeInsetsGeometry get _standardButtonPadding => EdgeInsets.symmetric(vertical: DEFAULT_MARGIN, horizontal: DEFAULT_MARGIN * 3);
+TextStyle _getTextStyle(BuildContext context, {bool google = false}) => getButtonTextStyle(context).copyWith(color: getColor(context, google ? ColorType.TEXT : ColorType.BUTTON_TEXT));
+
 class AButton extends StatelessWidget {
   final IconData icon;
+  final Color iconColor;
   final String label;
-  final Color color;
-  final bool signInButton;
+  final Color buttonColor;
   final Function() onPressed;
-  AButton({@required this.label, this.icon, this.color, this.onPressed, this.signInButton = false});
+  AButton({@required this.label, this.icon, this.iconColor, this.buttonColor, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
-    final bool isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
-    TextStyle textStyle = Platform.isIOS ? CupertinoTheme.of(context).textTheme.actionTextStyle : Theme.of(context).textTheme.button;
-    textStyle = textStyle.copyWith(color: isDarkMode ? (signInButton ? TEXT_COLOR_DARK : TEXT_COLOR) : (signInButton ? TEXT_COLOR : TEXT_COLOR_DARK));
-
     final Widget child = Row(children: [
-      if (icon != null || signInButton) Padding(padding: EdgeInsets.only(right: DEFAULT_MARGIN), child: signInButton ? AnImageIcon("assets/google.png") : AnIcon(icon, button: true)),
-      Expanded(child: AText(label, textAlign: TextAlign.center, maxLines: 1, style: textStyle)),
+      if (icon != null) Padding(padding: EdgeInsets.only(right: DEFAULT_MARGIN), child: AnIcon(icon, button: true, color: iconColor)),
+      Expanded(child: AText(label, textAlign: TextAlign.center, maxLines: 1, style: _getTextStyle(context))),
     ]);
 
-    final EdgeInsetsGeometry margin = EdgeInsets.symmetric(vertical: DEFAULT_MARGIN * 0.5, horizontal: DEFAULT_MARGIN);
-    final EdgeInsetsGeometry padding = EdgeInsets.symmetric(vertical: DEFAULT_MARGIN, horizontal: DEFAULT_MARGIN * 3);
-    Color buttonColor = isDarkMode ? (signInButton ? CARD_COLOR_DARK : color) : (signInButton ? CARD_COLOR : color);
     Widget buttonWidget;
 
     if (Platform.isIOS) {
-      buttonWidget = CupertinoButton(padding: padding, child: child, onPressed: onPressed, color: buttonColor ?? CupertinoTheme.of(context).primaryColor);
+      buttonWidget = CupertinoButton(padding: _standardButtonPadding, child: child, onPressed: onPressed, color: buttonColor ?? CupertinoTheme.of(context).primaryColor);
     } else {
-      buttonWidget = RaisedButton(padding: padding, child: child, onPressed: onPressed, color: buttonColor);
+      buttonWidget = RaisedButton(padding: _standardButtonPadding, child: child, onPressed: onPressed, color: buttonColor);
     }
 
-    return Container(margin: margin, child: buttonWidget);
+    return Container(margin: _standardButtonMargin, child: buttonWidget);
+  }
+}
+
+class AGoogleSignInButton extends StatelessWidget {
+  final String label;
+  final Function() onPressed;
+  AGoogleSignInButton({@required this.label, this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    final Widget child = Row(children: [
+      Padding(padding: EdgeInsets.only(right: DEFAULT_MARGIN), child: AnImageIcon("assets/google.png")),
+      Expanded(child: AText(label, textAlign: TextAlign.center, maxLines: 1, style: _getTextStyle(context, google: true))),
+    ]);
+
+    final Color buttonColor = getColor(context, ColorType.CARD);
+    Widget buttonWidget;
+
+    if (Platform.isIOS) {
+      buttonWidget = CupertinoButton(padding: _standardButtonPadding, child: child, onPressed: onPressed, color: buttonColor);
+    } else {
+      buttonWidget = RaisedButton(padding: _standardButtonPadding, child: child, onPressed: onPressed, color: buttonColor);
+    }
+
+    return Container(margin: _standardButtonMargin, child: buttonWidget);
   }
 }
 
 class AVerticalButton extends StatelessWidget {
   final IconData icon;
+  final Color iconColor;
   final String label;
-  final Color color;
+  final Color buttonColor;
   final Function() onPressed;
-  AVerticalButton({@required this.label, this.icon, this.color, this.onPressed});
+  AVerticalButton({@required this.label, this.icon, this.iconColor, this.buttonColor, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
-    final bool isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
-    TextStyle textStyle = Platform.isIOS ? CupertinoTheme.of(context).textTheme.actionTextStyle : Theme.of(context).textTheme.button;
-    textStyle = textStyle.copyWith(color: isDarkMode ? TEXT_COLOR : TEXT_COLOR_DARK);
-
     final Widget child = Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-      if (icon != null) Padding(padding: EdgeInsets.only(bottom: DEFAULT_MARGIN), child: AnIcon(icon, button: true)),
-      AText(label, textAlign: TextAlign.center, maxLines: 2, style: textStyle),
+      if (icon != null) Padding(padding: EdgeInsets.only(bottom: DEFAULT_MARGIN), child: AnIcon(icon, button: true, color: iconColor)),
+      AText(label, textAlign: TextAlign.center, maxLines: 2, style: _getTextStyle(context)),
     ]);
 
     final EdgeInsetsGeometry margin = EdgeInsets.symmetric(vertical: DEFAULT_MARGIN * 0.5, horizontal: DEFAULT_MARGIN * 0.5);
@@ -63,9 +82,9 @@ class AVerticalButton extends StatelessWidget {
     Widget buttonWidget;
 
     if (Platform.isIOS) {
-      buttonWidget = CupertinoButton(padding: padding, child: child, onPressed: onPressed, color: color ?? CupertinoTheme.of(context).primaryColor);
+      buttonWidget = CupertinoButton(padding: padding, child: child, onPressed: onPressed, color: buttonColor ?? CupertinoTheme.of(context).primaryColor);
     } else {
-      buttonWidget = RaisedButton(padding: padding, child: child, onPressed: onPressed, color: color);
+      buttonWidget = RaisedButton(padding: padding, child: child, onPressed: onPressed, color: buttonColor);
     }
 
     return Container(margin: margin, child: buttonWidget);
@@ -81,15 +100,7 @@ class ATextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
-    Color color;
-
-    if (isDarkMode) {
-      color = negative ? NEGATIVE_COLOR_DARK : ACCENT_COLOR_DARK;
-    } else {
-      color = negative ? NEGATIVE_COLOR : ACCENT_COLOR;
-    }
-
+    final Color color = getColor(context, negative ? ColorType.NEGATIVE : ColorType.ACCENT);
     TextStyle textStyle = Platform.isIOS ? CupertinoTheme.of(context).textTheme.actionTextStyle : Theme.of(context).textTheme.button;
     textStyle = textStyle.merge(style).copyWith(color: color);
     final Widget child = AText(label, textAlign: TextAlign.center, maxLines: 1, style: textStyle);
@@ -114,8 +125,7 @@ class NegativeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color color = MediaQuery.of(context).platformBrightness == Brightness.dark ? NEGATIVE_COLOR_DARK : NEGATIVE_COLOR;
-    return AButton(label: label, icon: icon, onPressed: onPressed, color: color);
+    return AButton(label: label, icon: icon, onPressed: onPressed, buttonColor: getColor(context, ColorType.NEGATIVE));
   }
 }
 
@@ -153,7 +163,7 @@ class AnIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final EdgeInsetsGeometry padding = EdgeInsets.zero;
-    final Color color = MediaQuery.of(context).platformBrightness == Brightness.dark ? ACCENT_COLOR_DARK : ACCENT_COLOR;
+    final Color color = getColor(context, ColorType.ACCENT);
     final AnIcon child = AnIcon(icon, color: color);
     return Platform.isIOS ? CupertinoButton(padding: padding, child: child, onPressed: onPressed) : IconButton(padding: padding, icon: child, onPressed: onPressed);
   }

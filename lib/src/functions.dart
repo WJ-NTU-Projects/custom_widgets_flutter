@@ -5,27 +5,23 @@ import 'package:flutter/material.dart';
 
 import '../custom_widgets_wj.dart';
 
-Future<void> showADialog(BuildContext context, WidgetBuilder builder) {
-  return Platform.isIOS ? showCupertinoDialog(context: context, builder: builder, useRootNavigator: false) : showDialog(context: context, builder: builder, useRootNavigator: false);
-}
+//========================
+// Dialogs & Modal Sheets
+//========================
+Future<void> showModalSheet(BuildContext context, WidgetBuilder builder, {bool root = true}) => Platform.isIOS ? showCupertinoModalPopup(context: context, builder: builder, useRootNavigator: root) : showModalBottomSheet(context: context, builder: builder, useRootNavigator: root);
+Future<void> showProgressDialog(BuildContext context) => showADialog(context, (context) => ADialog(DialogType.PROGRESS));
+Future<void> hideProgressDialog(BuildContext context) async => Navigator.of(context).pop();
+Future<void> showADialog(BuildContext context, WidgetBuilder builder) => Platform.isIOS ? showCupertinoDialog(context: context, builder: builder, useRootNavigator: false) : showDialog(context: context, builder: builder, useRootNavigator: false);
 
 void showErrorDialog(BuildContext context, dynamic error, {String message = "Something went wrong."}) {
   print("ERROR: $error");
   showADialog(context, (context) => ADialog(DialogType.OK, message: message));
-  //showPlatformDialog(context: context, builder: (context) => ADialog(DialogType.OK, message: ERROR_DEF));
 }
 
-Future<void> showProgressDialog(BuildContext context) {
-  return showADialog(context, (context) => ADialog(DialogType.PROGRESS));
-}
-
-Future<void> hideProgressDialog(BuildContext context) async {
-  Navigator.of(context).pop();
-}
-
-Future<void> showModalSheet(BuildContext context, WidgetBuilder builder, {bool root = true}) {
-  return Platform.isIOS ? showCupertinoModalPopup(context: context, builder: builder, useRootNavigator: root) : showModalBottomSheet(context: context, builder: builder, useRootNavigator: root);
-}
+//===========
+// Navigator
+//===========
+void navigatePopUntilFirst(BuildContext context, {bool root = false}) => Navigator.of(context, rootNavigator: root).popUntil((route) => route.isFirst);
 
 Future<T> navigate<T extends Object>(BuildContext context, Widget targetPage, {bool root = false}) {
   final Route<T> route = Platform.isIOS ? CupertinoPageRoute(builder: (context) => targetPage) : MaterialPageRoute(builder: (context) => targetPage);
@@ -37,18 +33,10 @@ Future<T> navigateFinish<T extends Object>(BuildContext context, Widget targetPa
   return Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(route, (route) => false);
 }
 
-void navigatePopUntilFirst(BuildContext context, {bool root = false}) {
-  Navigator.of(context, rootNavigator: root).popUntil((route) => route.isFirst);
-}
-
-Border getNavBorder(BuildContext context) {
-  final Color navBorderColor = MediaQuery.of(context).platformBrightness == Brightness.dark ? DIVIDER_COLOR_DARK : DIVIDER_COLOR;
-  return Border(bottom: BorderSide(color: navBorderColor, width: 0.0, style: BorderStyle.solid));
-}
-
-Color getCardColor2(BuildContext context) {
-  return Platform.isIOS ? (MediaQuery.of(context).platformBrightness == Brightness.dark ? CARD_COLOR_DARK : CARD_COLOR) : Colors.transparent;
-}
+//========
+// Styles
+//========
+TextStyle getButtonTextStyle(BuildContext context) => Platform.isIOS ? CupertinoTheme.of(context).textTheme.actionTextStyle : Theme.of(context).textTheme.button;
 
 Color getColor(BuildContext context, ColorType type) {
   bool isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
@@ -74,6 +62,8 @@ Color getColor(BuildContext context, ColorType type) {
       return isDarkMode ? TEXT_COLOR_DARK : TEXT_COLOR;
     case ColorType.INACTIVE:
       return isDarkMode ? INACTIVE_COLOR_DARK : INACTIVE_COLOR;
+    case ColorType.BUTTON_TEXT:
+      return isDarkMode ? TEXT_COLOR : TEXT_COLOR_DARK;
     default:
       return isDarkMode ? PRIMARY_COLOR_DARK : PRIMARY_COLOR;
   }
