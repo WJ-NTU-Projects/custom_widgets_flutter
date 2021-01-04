@@ -64,6 +64,8 @@ Color getColor(BuildContext context, ColorType type) {
       return isDarkMode ? INACTIVE_COLOR_DARK : INACTIVE_COLOR;
     case ColorType.BUTTON_TEXT:
       return isDarkMode ? TEXT_COLOR : TEXT_COLOR_DARK;
+    case ColorType.BAR:
+      return isDarkMode ? BAR_COLOR_DARK : BAR_COLOR;
     default:
       return isDarkMode ? PRIMARY_COLOR_DARK : PRIMARY_COLOR;
   }
