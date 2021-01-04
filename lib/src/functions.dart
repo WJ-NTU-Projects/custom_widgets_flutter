@@ -66,6 +66,8 @@ Color getColor(BuildContext context, ColorType type) {
       return isDarkMode ? TEXT_COLOR : TEXT_COLOR_DARK;
     case ColorType.BAR:
       return isDarkMode ? BAR_COLOR_DARK : BAR_COLOR;
+    case ColorType.LIST:
+      return Platform.isIOS ? getColor(context, ColorType.CARD) : Colors.transparent;
     default:
       return isDarkMode ? PRIMARY_COLOR_DARK : PRIMARY_COLOR;
   }
