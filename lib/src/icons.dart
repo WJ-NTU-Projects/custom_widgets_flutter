@@ -18,4 +18,5 @@ class ManyIcons {
   static IconData next = Platform.isIOS ? CupertinoIcons.right_chevron : Icons.chevron_right;
   static IconData profile = Platform.isIOS ? CupertinoIcons.profile_circled : Icons.account_circle;
   static IconData search = Platform.isIOS ? CupertinoIcons.search : Icons.search;
+  static IconData mail = Platform.isIOS ? CupertinoIcons.mail : Icons.mail_outline;
 }
