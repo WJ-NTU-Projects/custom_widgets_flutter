@@ -5,6 +5,7 @@
 
 import 'dart:math' as math;
 
+import 'package:custom_widgets_wj/custom_widgets_wj.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' show ListTileTheme, MaterialState, MaterialStateMouseCursor, MaterialStateProperty;
@@ -203,7 +204,7 @@ class CupertinoListTile extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border(
             bottom: BorderSide(
-              color: CupertinoDynamicColor.resolve(CupertinoColors.separator, context),
+              color: getColor(context, ColorType.DIVIDER),
             ),
           ),
         ),
