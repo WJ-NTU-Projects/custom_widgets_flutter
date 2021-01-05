@@ -28,9 +28,9 @@ class AButton extends StatelessWidget {
     Widget buttonWidget;
 
     if (Platform.isIOS) {
-      buttonWidget = CupertinoButton(padding: _standardButtonPadding, child: child, onPressed: onPressed, color: buttonColor ?? CupertinoTheme.of(context).primaryColor);
+      buttonWidget = CupertinoButton(padding: _standardButtonPadding, child: child, onPressed: onPressed, color: buttonColor ?? (onPressed == null ? getColor(context, ColorType.INACTIVE) : CupertinoTheme.of(context).primaryColor));
     } else {
-      buttonWidget = RaisedButton(padding: _standardButtonPadding, child: child, onPressed: onPressed, color: buttonColor);
+      buttonWidget = RaisedButton(padding: _standardButtonPadding, child: child, onPressed: onPressed, color: buttonColor ?? (onPressed == null ? getColor(context, ColorType.INACTIVE) : null));
     }
 
     return Container(margin: _standardButtonMargin, child: buttonWidget);
@@ -82,9 +82,9 @@ class AVerticalButton extends StatelessWidget {
     Widget buttonWidget;
 
     if (Platform.isIOS) {
-      buttonWidget = CupertinoButton(padding: padding, child: child, onPressed: onPressed, color: buttonColor ?? CupertinoTheme.of(context).primaryColor);
+      buttonWidget = CupertinoButton(padding: padding, child: child, onPressed: onPressed, color: buttonColor ?? (onPressed == null ? getColor(context, ColorType.INACTIVE) : CupertinoTheme.of(context).primaryColor));
     } else {
-      buttonWidget = RaisedButton(padding: padding, child: child, onPressed: onPressed, color: buttonColor);
+      buttonWidget = RaisedButton(padding: padding, child: child, onPressed: onPressed, color: buttonColor ?? (onPressed == null ? getColor(context, ColorType.INACTIVE) : null));
     }
 
     return Container(margin: margin, child: buttonWidget);
@@ -100,7 +100,7 @@ class ATextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color color = getColor(context, negative ? ColorType.NEGATIVE : ColorType.ACCENT);
+    final Color color = onPressed == null ? getColor(context, ColorType.INACTIVE) : getColor(context, negative ? ColorType.NEGATIVE : ColorType.ACCENT);
     TextStyle textStyle = Platform.isIOS ? CupertinoTheme.of(context).textTheme.actionTextStyle : Theme.of(context).textTheme.button;
     textStyle = textStyle.merge(style).copyWith(color: color);
     final Widget child = AText(label, textAlign: TextAlign.center, maxLines: 1, style: textStyle);
@@ -125,7 +125,7 @@ class NegativeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AButton(label: label, icon: icon, onPressed: onPressed, buttonColor: getColor(context, ColorType.NEGATIVE));
+    return AButton(label: label, icon: icon, onPressed: onPressed, buttonColor: onPressed == null ? getColor(context, ColorType.INACTIVE) : getColor(context, ColorType.NEGATIVE));
   }
 }
 
