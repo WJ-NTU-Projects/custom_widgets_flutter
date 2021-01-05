@@ -44,8 +44,7 @@ class ASubtitleText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
-    final Color textColor = Platform.isIOS ? (isDarkMode ? TEXT_COLOR_DARK : TEXT_COLOR) : (isDarkMode ? ACCENT_COLOR_DARK : ACCENT_COLOR);
+    final Color textColor = getColor(context, ColorType.TEXT);
     return Text(data, style: TextStyle(color: textColor, fontSize: 20, fontWeight: FontWeight.w600), maxLines: 1);
   }
 }
