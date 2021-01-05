@@ -1,8 +1,8 @@
 name: custom_widgets_wj
 description: Custom widgets built by WJ.
-version: 0.0.1
-author:
-homepage:
+version: 0.0.3
+author: WJ
+homepage: http://github.com
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

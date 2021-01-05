@@ -22,15 +22,15 @@ class AButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final Widget child = Row(children: [
       if (icon != null) Padding(padding: EdgeInsets.only(right: DEFAULT_MARGIN), child: AnIcon(icon, button: true, color: iconColor)),
-      Expanded(child: AText(label, textAlign: TextAlign.center, maxLines: 1, style: _getTextStyle(context))),
+      Expanded(child: AText(label, textAlign: TextAlign.center, maxLines: 1, style: _getTextStyle(context, google: onPressed == null))),
     ]);
 
     Widget buttonWidget;
 
     if (Platform.isIOS) {
-      buttonWidget = CupertinoButton(padding: _standardButtonPadding, child: child, onPressed: onPressed, color: buttonColor ?? (onPressed == null ? getColor(context, ColorType.INACTIVE) : CupertinoTheme.of(context).primaryColor));
+      buttonWidget = CupertinoButton(padding: _standardButtonPadding, child: child, onPressed: onPressed, color: buttonColor ?? CupertinoTheme.of(context).primaryColor);
     } else {
-      buttonWidget = RaisedButton(padding: _standardButtonPadding, child: child, onPressed: onPressed, color: buttonColor ?? (onPressed == null ? getColor(context, ColorType.INACTIVE) : null));
+      buttonWidget = RaisedButton(padding: _standardButtonPadding, child: child, onPressed: onPressed, color: buttonColor);
     }
 
     return Container(margin: _standardButtonMargin, child: buttonWidget);
@@ -74,7 +74,7 @@ class AVerticalButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final Widget child = Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       if (icon != null) Padding(padding: EdgeInsets.only(bottom: DEFAULT_MARGIN), child: AnIcon(icon, button: true, color: iconColor)),
-      AText(label, textAlign: TextAlign.center, maxLines: 2, style: _getTextStyle(context)),
+      AText(label, textAlign: TextAlign.center, maxLines: 2, style: _getTextStyle(context, google: onPressed == null)),
     ]);
 
     final EdgeInsetsGeometry margin = EdgeInsets.symmetric(vertical: DEFAULT_MARGIN * 0.5, horizontal: DEFAULT_MARGIN * 0.5);
@@ -125,7 +125,7 @@ class NegativeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AButton(label: label, icon: icon, onPressed: onPressed, buttonColor: onPressed == null ? getColor(context, ColorType.INACTIVE) : getColor(context, ColorType.NEGATIVE));
+    return AButton(label: label, icon: icon, onPressed: onPressed, buttonColor: getColor(context, ColorType.NEGATIVE));
   }
 }
 

@@ -28,6 +28,8 @@ const Color TEXT_COLOR = Color(0xFF000000);
 const Color TEXT_COLOR_DARK = Color(0xFFFFFFFF);
 const Color INACTIVE_COLOR = Color(0xFF444444);
 const Color INACTIVE_COLOR_DARK = Color(0xFFBBBBBB);
+// const Color INACTIVE_COLOR = Color(0xFF444444);
+// const Color INACTIVE_COLOR_DARK = Color(0xFFBBBBBB);
 
 const double DEFAULT_MARGIN = 16.0;
 const double DEFAULT_ICON_SIZE = 28.0;
