@@ -181,14 +181,6 @@ class AListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget _widget;
-
-    if (Platform.isIOS) {
-      _widget = CupertinoListTile(leading: leading, title: title, subtitle: subtitle, trailing: trailing, onTap: onTap, border: last ? Border() : null);
-    } else {
-      _widget = ListTile(leading: leading, title: title, subtitle: subtitle, trailing: trailing, onTap: onTap);
-    }
-
-    return _widget;
+    return CupertinoListTile(leading: leading, title: title, subtitle: subtitle, trailing: trailing, onTap: onTap, border: last ? Border() : null);
   }
 }
