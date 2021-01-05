@@ -57,7 +57,7 @@ class _ModalTextFieldState extends State<ModalTextField> {
     final Radius borderRadius = Radius.circular(DEFAULT_MARGIN * 2);
 
     return Container(
-      decoration: BoxDecoration(color: getColor(context, ColorType.MODAL), borderRadius: BorderRadius.only(topLeft: borderRadius, topRight: borderRadius)),
+      decoration: BoxDecoration(color: getColor(context, ColorType.CARD), borderRadius: BorderRadius.only(topLeft: borderRadius, topRight: borderRadius)),
       padding: EdgeInsets.symmetric(vertical: DEFAULT_MARGIN * 2, horizontal: DEFAULT_MARGIN * 2),
       child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
         AText(widget.title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),

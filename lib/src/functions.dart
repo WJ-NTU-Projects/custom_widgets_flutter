@@ -48,8 +48,6 @@ Color getColor(BuildContext context, ColorType type) {
       return isDarkMode ? SLIVER_COLOR_DARK : SLIVER_COLOR;
     case ColorType.ACCENT:
       return isDarkMode ? ACCENT_COLOR_DARK : ACCENT_COLOR;
-    case ColorType.MODAL:
-      return isDarkMode ? MODAL_COLOR_DARK : MODAL_COLOR;
     case ColorType.CARD:
       return isDarkMode ? CARD_COLOR_DARK : CARD_COLOR;
     case ColorType.DIVIDER:

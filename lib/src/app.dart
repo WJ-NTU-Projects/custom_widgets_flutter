@@ -27,9 +27,9 @@ class AnApp extends StatelessWidget {
     } else {
       theme = ThemeData(
         primaryColor: PRIMARY_COLOR,
-        appBarTheme: AppBarTheme(color: MODAL_COLOR),
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(backgroundColor: MODAL_COLOR, selectedItemColor: ACCENT_COLOR, unselectedItemColor: INACTIVE_COLOR),
-        bottomAppBarTheme: BottomAppBarTheme(color: MODAL_COLOR),
+        appBarTheme: AppBarTheme(color: PRIMARY_COLOR),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(backgroundColor: PRIMARY_COLOR, selectedItemColor: ACCENT_COLOR, unselectedItemColor: INACTIVE_COLOR),
+        bottomAppBarTheme: BottomAppBarTheme(color: PRIMARY_COLOR),
         accentColor: ACCENT_COLOR,
         scaffoldBackgroundColor: PRIMARY_COLOR,
         buttonTheme: ButtonThemeData(buttonColor: ACCENT_COLOR, textTheme: ButtonTextTheme.primary),
@@ -37,9 +37,9 @@ class AnApp extends StatelessWidget {
 
       darkTheme = ThemeData(
         primaryColor: PRIMARY_COLOR_DARK,
-        appBarTheme: AppBarTheme(color: MODAL_COLOR_DARK),
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(backgroundColor: MODAL_COLOR_DARK, selectedItemColor: ACCENT_COLOR_DARK, unselectedItemColor: INACTIVE_COLOR_DARK),
-        bottomAppBarTheme: BottomAppBarTheme(color: MODAL_COLOR_DARK),
+        appBarTheme: AppBarTheme(color: PRIMARY_COLOR_DARK),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(backgroundColor: PRIMARY_COLOR_DARK, selectedItemColor: ACCENT_COLOR_DARK, unselectedItemColor: INACTIVE_COLOR_DARK),
+        bottomAppBarTheme: BottomAppBarTheme(color: PRIMARY_COLOR_DARK),
         accentColor: ACCENT_COLOR_DARK,
         scaffoldBackgroundColor: PRIMARY_COLOR_DARK,
         buttonTheme: ButtonThemeData(buttonColor: ACCENT_COLOR_DARK, textTheme: ButtonTextTheme.primary),
