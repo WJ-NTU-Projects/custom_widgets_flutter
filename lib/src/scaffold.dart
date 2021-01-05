@@ -29,7 +29,7 @@ class AScaffold extends StatelessWidget {
         appBar = CupertinoSliverNavigationBar(border: navBorder, largeTitle: title, transitionBetweenRoutes: false, backgroundColor: color, trailing: action);
         return CupertinoPageScaffold(child: Scrollbar(child: CustomScrollView(slivers: [appBar, SliverToBoxAdapter(child: body)])));
       } else {
-        appBar = CupertinoNavigationBar(border: navBorder, middle: title, transitionBetweenRoutes: false);
+        appBar = CupertinoNavigationBar(border: navBorder, middle: title, transitionBetweenRoutes: false, trailing: action);
         return CupertinoPageScaffold(navigationBar: appBar, child: defaultBodyWidget);
       }
     } else {
