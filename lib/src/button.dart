@@ -9,6 +9,7 @@ import 'external/cupertino_list_tile.dart';
 EdgeInsetsGeometry get _standardButtonMargin => EdgeInsets.symmetric(vertical: DEFAULT_MARGIN * 0.5, horizontal: DEFAULT_MARGIN);
 EdgeInsetsGeometry get _standardButtonPadding => EdgeInsets.symmetric(vertical: DEFAULT_MARGIN, horizontal: DEFAULT_MARGIN * 3);
 TextStyle _getTextStyle(BuildContext context, {bool google = false}) => getButtonTextStyle(context).copyWith(color: getColor(context, google ? ColorType.TEXT : ColorType.BUTTON_TEXT));
+Color _getNullIconColor(BuildContext context, Function() onPressed) => (onPressed == null ? getColor(context, ColorType.TEXT) : null);
 
 class AButton extends StatelessWidget {
   final IconData icon;
@@ -21,7 +22,7 @@ class AButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Widget child = Row(children: [
-      if (icon != null) Padding(padding: EdgeInsets.only(right: DEFAULT_MARGIN), child: AnIcon(icon, button: true, color: iconColor)),
+      if (icon != null) Padding(padding: EdgeInsets.only(right: DEFAULT_MARGIN), child: AnIcon(icon, button: true, color: iconColor ?? _getNullIconColor(context, onPressed))),
       Expanded(child: AText(label, textAlign: TextAlign.center, maxLines: 1, style: _getTextStyle(context, google: onPressed == null))),
     ]);
 
@@ -73,7 +74,7 @@ class AVerticalButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Widget child = Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-      if (icon != null) Padding(padding: EdgeInsets.only(bottom: DEFAULT_MARGIN), child: AnIcon(icon, button: true, color: iconColor)),
+      if (icon != null) Padding(padding: EdgeInsets.only(bottom: DEFAULT_MARGIN), child: AnIcon(icon, button: true, color: iconColor ?? _getNullIconColor(context, onPressed))),
       AText(label, textAlign: TextAlign.center, maxLines: 2, style: _getTextStyle(context, google: onPressed == null)),
     ]);
 
