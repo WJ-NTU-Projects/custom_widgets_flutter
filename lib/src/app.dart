@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import '../custom_widgets_wj.dart';
 
@@ -45,9 +44,6 @@ class AnApp extends StatelessWidget {
         scaffoldBackgroundColor: PRIMARY_COLOR_DARK,
         buttonTheme: ButtonThemeData(buttonColor: ACCENT_COLOR_DARK, textTheme: ButtonTextTheme.primary),
       );
-
-      bool isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
-      SystemChrome.setSystemUIOverlayStyle(isDarkMode ? SystemUiOverlayStyle.dark.copyWith(systemNavigationBarColor: PRIMARY_COLOR_DARK) : SystemUiOverlayStyle.light.copyWith(systemNavigationBarColor: PRIMARY_COLOR));
     }
 
     return Platform.isIOS ? CupertinoApp(title: title, home: home, theme: theme) : MaterialApp(title: title, home: home, theme: theme, darkTheme: darkTheme);

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../custom_widgets_wj.dart';
 
@@ -14,6 +15,8 @@ class AScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
+    SystemChrome.setSystemUIOverlayStyle(isDarkMode ? SystemUiOverlayStyle.dark.copyWith(systemNavigationBarColor: PRIMARY_COLOR_DARK) : SystemUiOverlayStyle.light.copyWith(systemNavigationBarColor: PRIMARY_COLOR));
     final Widget defaultBodyWidget = SafeArea(child: body);
 
     if (Platform.isIOS) {
