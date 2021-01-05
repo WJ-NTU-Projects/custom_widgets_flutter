@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../custom_widgets_wj.dart';
 
@@ -69,4 +70,10 @@ Color getColor(BuildContext context, ColorType type) {
     default:
       return isDarkMode ? PRIMARY_COLOR_DARK : PRIMARY_COLOR;
   }
+}
+
+void fixNavigationBarColor(BuildContext context) {
+  bool isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
+  SystemUiOverlayStyle style = isDarkMode ? SystemUiOverlayStyle.dark.copyWith(systemNavigationBarColor: PRIMARY_COLOR_DARK) : SystemUiOverlayStyle.light.copyWith(systemNavigationBarColor: PRIMARY_COLOR);
+  SystemChrome.setSystemUIOverlayStyle(style);
 }
