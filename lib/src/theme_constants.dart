@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-enum ColorType { PRIMARY, SLIVER, ACCENT, MODAL, CARD, DIVIDER, POSITIVE, NEGATIVE, TEXT, INACTIVE, BUTTON_TEXT, BUTTON }
+enum ColorType { PRIMARY, SLIVER, ACCENT, MODAL, CARD, DIVIDER, POSITIVE, NEGATIVE, TEXT, INACTIVE, BUTTON_TEXT, BUTTON, BAR, LIST }
 
 const Color PRIMARY_COLOR = Color(0xFFFFFFFF);
 const Color PRIMARY_COLOR_DARK = Color(0xFF000000);
