@@ -51,6 +51,8 @@ Color getColor(BuildContext context, ColorType type) {
       return isDarkMode ? ACCENT_COLOR_DARK : ACCENT_COLOR;
     case ColorType.CARD:
       return isDarkMode ? CARD_COLOR_DARK : CARD_COLOR;
+    case ColorType.MODAL:
+      return isDarkMode ? MODAL_COLOR_DARK : MODAL_COLOR;
     case ColorType.DIVIDER:
       return isDarkMode ? DIVIDER_COLOR_DARK : DIVIDER_COLOR;
     case ColorType.POSITIVE:
