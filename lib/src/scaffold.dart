@@ -33,9 +33,9 @@ class AScaffold extends StatelessWidget {
       }
     } else {
       final Widget body = isScrollable ? Scrollbar(child: SingleChildScrollView(child: defaultBodyWidget)) : defaultBodyWidget;
-      if (title == null) return Scaffold(appBar: null, body: body);
-      if (action == null) return Scaffold(appBar: AppBar(title: title), body: body);
-      return Scaffold(appBar: AppBar(title: title, actions: [action]), body: body);
+      if (title == null) return Scaffold(resizeToAvoidBottomPadding: false, appBar: null, body: body);
+      if (action == null) return Scaffold(resizeToAvoidBottomPadding: false, appBar: AppBar(title: title), body: body);
+      return Scaffold(resizeToAvoidBottomPadding: false, appBar: AppBar(title: title, actions: [action]), body: body);
     }
   }
 }
@@ -79,6 +79,7 @@ class _ATabScaffoldState extends State<ATabScaffold> {
         return WillPopScope(
           onWillPop: _onAndroidTabPop,
           child: Scaffold(
+            resizeToAvoidBottomPadding: false,
             appBar: AppBar(title: tabTitleList[_selectedIndex]),
             body: tabBodyList.elementAt(_selectedIndex),
             bottomNavigationBar: BottomNavigationBar(
