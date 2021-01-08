@@ -45,7 +45,8 @@ class ATabScaffold extends StatefulWidget {
   final List<Widget> tabTitleList;
   final List<BottomNavigationBarItem> tabItemList;
   final List<Widget> tabBodyList;
-  ATabScaffold({@required this.tabTitleList, @required this.tabItemList, @required this.tabBodyList});
+  final int initialIndex;
+  ATabScaffold({@required this.tabTitleList, @required this.tabItemList, @required this.tabBodyList, this.initialIndex = 0});
 
   @override
   _ATabScaffoldState createState() => _ATabScaffoldState();
@@ -53,13 +54,15 @@ class ATabScaffold extends StatefulWidget {
 
 class _ATabScaffoldState extends State<ATabScaffold> {
   CupertinoTabController _tabController;
-  int _selectedIndex = 0;
+  int _selectedIndex = -1;
 
   @override
   void initState() {
     super.initState();
+    if (_selectedIndex == -1) _selectedIndex = widget.initialIndex;
+
     if (_tabController == null && Platform.isIOS) {
-      _tabController = CupertinoTabController();
+      _tabController = CupertinoTabController(initialIndex: widget.initialIndex);
     }
   }
 
