@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../custom_widgets_wj.dart';
 
@@ -73,12 +74,13 @@ class _ATextFieldState extends State<ATextField> {
   Widget build(BuildContext context) {
     final EdgeInsetsGeometry padding = EdgeInsets.symmetric(vertical: DEFAULT_MARGIN * 0.75, horizontal: DEFAULT_MARGIN * 0.5);
     Widget textField;
+    int limit = widget.limit ?? 999;
 
     if (Platform.isIOS) {
-      textField = CupertinoTextField(padding: padding, controller: _controller, placeholder: widget.placeholder, maxLength: widget.limit, keyboardType: widget.inputType);
+      textField = CupertinoTextField(inputFormatters: [new LengthLimitingTextInputFormatter(limit)], padding: padding, controller: _controller, placeholder: widget.placeholder, maxLength: limit, keyboardType: widget.inputType);
     } else {
       final InputDecoration decoration = InputDecoration(contentPadding: padding, hintText: widget.placeholder);
-      textField = TextField(decoration: decoration, controller: _controller, maxLength: widget.limit, keyboardType: widget.inputType);
+      textField = TextField(inputFormatters: [new LengthLimitingTextInputFormatter(limit)], decoration: decoration, controller: _controller, maxLength: limit, keyboardType: widget.inputType);
     }
 
     return textField;
