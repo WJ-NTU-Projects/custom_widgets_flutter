@@ -179,9 +179,9 @@ class ASquareButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Widget child = Padding(padding: EdgeInsets.only(bottom: DEFAULT_MARGIN), child: AnIcon(icon, button: true, color: iconColor ?? _getNullIconColor(context, onPressed)));
+    final Widget child = AnIcon(icon, button: true, color: iconColor ?? _getNullIconColor(context, onPressed));
     final EdgeInsetsGeometry margin = EdgeInsets.symmetric(vertical: DEFAULT_MARGIN * 0.5, horizontal: DEFAULT_MARGIN * 0.5);
-    final EdgeInsetsGeometry padding = EdgeInsets.symmetric(vertical: DEFAULT_MARGIN, horizontal: DEFAULT_MARGIN);
+    final EdgeInsetsGeometry padding = EdgeInsets.symmetric(vertical: DEFAULT_MARGIN * 0.25, horizontal: DEFAULT_MARGIN * 0.25);
     Widget buttonWidget;
 
     if (Platform.isIOS) {
