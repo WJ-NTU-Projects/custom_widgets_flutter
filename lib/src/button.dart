@@ -170,6 +170,30 @@ class AnIconButton extends StatelessWidget {
   }
 }
 
+class ASquareButton extends StatelessWidget {
+  final IconData icon;
+  final Color iconColor;
+  final Color buttonColor;
+  final Function() onPressed;
+  ASquareButton({@required this.icon, this.iconColor, this.buttonColor, this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    final Widget child = Padding(padding: EdgeInsets.only(bottom: DEFAULT_MARGIN), child: AnIcon(icon, button: true, color: iconColor ?? _getNullIconColor(context, onPressed)));
+    final EdgeInsetsGeometry margin = EdgeInsets.symmetric(vertical: DEFAULT_MARGIN * 0.5, horizontal: DEFAULT_MARGIN * 0.5);
+    final EdgeInsetsGeometry padding = EdgeInsets.symmetric(vertical: DEFAULT_MARGIN, horizontal: DEFAULT_MARGIN);
+    Widget buttonWidget;
+
+    if (Platform.isIOS) {
+      buttonWidget = CupertinoButton(padding: padding, child: child, onPressed: onPressed, color: buttonColor ?? (onPressed == null ? getColor(context, ColorType.INACTIVE) : CupertinoTheme.of(context).primaryColor));
+    } else {
+      buttonWidget = RaisedButton(padding: padding, child: child, onPressed: onPressed, color: buttonColor ?? (onPressed == null ? getColor(context, ColorType.INACTIVE) : null));
+    }
+
+    return Container(margin: margin, child: buttonWidget, width: 56.0, height: 56.0);
+  }
+}
+
 class AListTile extends StatelessWidget {
   final Widget leading;
   final Widget title;
