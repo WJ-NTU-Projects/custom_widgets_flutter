@@ -175,12 +175,13 @@ class ASquareButton extends StatelessWidget {
   final Color iconColor;
   final Color buttonColor;
   final Function() onPressed;
-  ASquareButton({@required this.icon, this.iconColor, this.buttonColor, this.onPressed});
+  final double margin;
+  ASquareButton({@required this.icon, this.iconColor, this.buttonColor, this.onPressed, this.margin});
 
   @override
   Widget build(BuildContext context) {
     final Widget child = AnIcon(icon, button: true, color: iconColor ?? _getNullIconColor(context, onPressed));
-    final EdgeInsetsGeometry margin = EdgeInsets.symmetric(vertical: DEFAULT_MARGIN * 0.5, horizontal: DEFAULT_MARGIN * 0.5);
+    final EdgeInsetsGeometry margin = EdgeInsets.symmetric(vertical: this.margin ?? DEFAULT_MARGIN * 0.5, horizontal: this.margin ?? DEFAULT_MARGIN * 0.5);
     final EdgeInsetsGeometry padding = EdgeInsets.symmetric(vertical: DEFAULT_MARGIN * 0.25, horizontal: DEFAULT_MARGIN * 0.25);
     Widget buttonWidget;
 
@@ -191,6 +192,29 @@ class ASquareButton extends StatelessWidget {
     }
 
     return Container(margin: margin, child: buttonWidget, width: 56.0, height: 56.0);
+  }
+}
+
+class AFloorButton extends StatelessWidget {
+  final IconData icon;
+  final Color iconColor;
+  final Color buttonColor;
+  final Function() onPressed;
+  AFloorButton({@required this.icon, this.iconColor, this.buttonColor, this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    final Widget child = AnIcon(icon, button: true, color: iconColor ?? _getNullIconColor(context, onPressed));
+    final EdgeInsetsGeometry padding = EdgeInsets.symmetric(vertical: DEFAULT_MARGIN * 0.25, horizontal: DEFAULT_MARGIN * 0.25);
+    Widget buttonWidget;
+
+    if (Platform.isIOS) {
+      buttonWidget = CupertinoButton(borderRadius: BorderRadius.zero, padding: padding, child: child, onPressed: onPressed, color: buttonColor ?? (onPressed == null ? getColor(context, ColorType.INACTIVE) : CupertinoTheme.of(context).primaryColor));
+    } else {
+      buttonWidget = RaisedButton(padding: padding, child: child, onPressed: onPressed, color: buttonColor ?? (onPressed == null ? getColor(context, ColorType.INACTIVE) : null));
+    }
+
+    return Container(margin: EdgeInsets.zero, child: buttonWidget, width: 48.0, height: 48.0);
   }
 }
 
