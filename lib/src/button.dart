@@ -238,7 +238,7 @@ class ADigitButton extends StatelessWidget {
       buttonWidget = RaisedButton(padding: padding, child: child, onPressed: onPressed, color: buttonColor ?? (onPressed == null ? getColor(context, ColorType.INACTIVE) : null));
     }
 
-    return Container(margin: margin, child: buttonWidget, width: 48.0, height: 48.0);
+    return Container(margin: margin, child: buttonWidget, width: 40.0, height: 40.0);
   }
 }
 
