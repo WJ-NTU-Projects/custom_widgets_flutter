@@ -55,7 +55,8 @@ class ATextField extends StatefulWidget {
   final String placeholder;
   final TextInputType inputType;
   final int limit;
-  ATextField({@required this.controller, this.placeholder, this.inputType, this.limit});
+  final bool enabled;
+  ATextField({@required this.controller, this.placeholder, this.inputType, this.limit, this.enabled = true});
 
   @override
   _ATextFieldState createState() => _ATextFieldState();
@@ -77,10 +78,10 @@ class _ATextFieldState extends State<ATextField> {
     int limit = widget.limit ?? 999;
 
     if (Platform.isIOS) {
-      textField = CupertinoTextField(inputFormatters: [new LengthLimitingTextInputFormatter(limit)], padding: padding, controller: _controller, placeholder: widget.placeholder, maxLength: limit, keyboardType: widget.inputType);
+      textField = CupertinoTextField(inputFormatters: [new LengthLimitingTextInputFormatter(limit)], padding: padding, controller: _controller, placeholder: widget.placeholder, maxLength: limit, keyboardType: widget.inputType, enabled: widget.enabled);
     } else {
       final InputDecoration decoration = InputDecoration(contentPadding: padding, hintText: widget.placeholder);
-      textField = TextField(inputFormatters: [new LengthLimitingTextInputFormatter(limit)], decoration: decoration, controller: _controller, maxLength: limit, keyboardType: widget.inputType);
+      textField = TextField(inputFormatters: [new LengthLimitingTextInputFormatter(limit)], decoration: decoration, controller: _controller, maxLength: limit, keyboardType: widget.inputType, enabled: widget.enabled);
     }
 
     return textField;
