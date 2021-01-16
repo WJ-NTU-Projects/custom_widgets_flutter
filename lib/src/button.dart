@@ -218,6 +218,30 @@ class AFloorButton extends StatelessWidget {
   }
 }
 
+class ADigitButton extends StatelessWidget {
+  final String digit;
+  final Color buttonColor;
+  final Function() onPressed;
+  final double margin;
+  ADigitButton({@required this.digit, this.buttonColor, this.onPressed, this.margin});
+
+  @override
+  Widget build(BuildContext context) {
+    final Widget child = AText(digit, textAlign: TextAlign.center, maxLines: 1, style: _getTextStyle(context, google: onPressed == null));
+    final EdgeInsetsGeometry margin = EdgeInsets.all(this.margin ?? DEFAULT_MARGIN * 0.5);
+    final EdgeInsetsGeometry padding = EdgeInsets.all(DEFAULT_MARGIN * 0.25);
+    Widget buttonWidget;
+
+    if (Platform.isIOS) {
+      buttonWidget = CupertinoButton(borderRadius: BorderRadius.zero, padding: padding, child: child, onPressed: onPressed, color: buttonColor ?? (onPressed == null ? getColor(context, ColorType.INACTIVE) : CupertinoTheme.of(context).primaryColor));
+    } else {
+      buttonWidget = RaisedButton(padding: padding, child: child, onPressed: onPressed, color: buttonColor ?? (onPressed == null ? getColor(context, ColorType.INACTIVE) : null));
+    }
+
+    return Container(margin: margin, child: buttonWidget, width: 48.0, height: 48.0);
+  }
+}
+
 class AListTile extends StatelessWidget {
   final Widget leading;
   final Widget title;
