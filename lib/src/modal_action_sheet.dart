@@ -66,3 +66,25 @@ class ModalAction {
   final Function() onTap;
   ModalAction(this.icon, this.label, this.onTap);
 }
+
+class ModalContainer extends StatelessWidget {
+  final Widget child;
+  final double width;
+  final double height;
+  final EdgeInsetsGeometry padding;
+  ModalContainer({@required this.child, @required this.height, this.width, this.padding});
+
+  @override
+  Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+    final Radius radius = Radius.circular(DEFAULT_MARGIN * 0.5);
+
+    return Container(
+      decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: radius, topRight: radius)),
+      padding: padding,
+      width: size.width * (width ?? 1.0),
+      height: size.height * height,
+      child: child,
+    );
+  }
+}
