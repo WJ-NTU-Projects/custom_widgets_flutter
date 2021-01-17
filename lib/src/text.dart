@@ -81,8 +81,8 @@ class _ATextFieldState extends State<ATextField> {
       textField = CupertinoTextField(inputFormatters: [new LengthLimitingTextInputFormatter(limit)], padding: padding, controller: _controller, placeholder: widget.placeholder, maxLength: limit, keyboardType: widget.inputType, enabled: widget.enabled);
     } else {
       final OutlineInputBorder border = OutlineInputBorder(borderSide: BorderSide(color: getColor(context, ColorType.DIVIDER)));
-      final InputDecoration decoration = InputDecoration(contentPadding: padding, hintText: widget.placeholder, border: border, focusedBorder: border, enabledBorder: border, disabledBorder: border, counterText: "");
-      textField = TextField(inputFormatters: [new LengthLimitingTextInputFormatter(limit)], decoration: decoration, controller: _controller, maxLength: limit, keyboardType: widget.inputType, enabled: widget.enabled);
+      final InputDecoration decoration = InputDecoration(hintStyle: TextStyle(color: getColor(context, ColorType.DIVIDER)), hintText: widget.placeholder, border: border, focusedBorder: border, enabledBorder: border, disabledBorder: border, counterText: "");
+      textField = TextField(inputFormatters: [new LengthLimitingTextInputFormatter(limit)], decoration: decoration, controller: _controller, maxLength: limit, keyboardType: widget.inputType, enabled: widget.enabled, style: TextStyle(color: getColor(context, ColorType.TEXT)));
     }
 
     return textField;
