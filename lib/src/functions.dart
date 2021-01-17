@@ -79,3 +79,11 @@ void fixNavigationBarColor(BuildContext context) {
   SystemUiOverlayStyle style = isDarkMode ? SystemUiOverlayStyle.dark.copyWith(systemNavigationBarColor: PRIMARY_COLOR_DARK) : SystemUiOverlayStyle.light.copyWith(systemNavigationBarColor: PRIMARY_COLOR);
   SystemChrome.setSystemUIOverlayStyle(style);
 }
+
+Widget padAll(Widget widget, {double margin = MARGIN}) => Padding(padding: EdgeInsets.all(margin), child: widget);
+Widget padBottom(Widget widget, {double margin = MARGIN}) => Padding(padding: EdgeInsets.only(bottom: margin), child: widget);
+Widget padTop(Widget widget, {double margin = MARGIN}) => Padding(padding: EdgeInsets.only(top: margin), child: widget);
+Widget padLeft(Widget widget, {double margin = MARGIN}) => Padding(padding: EdgeInsets.only(left: margin), child: widget);
+Widget padRight(Widget widget, {double margin = MARGIN}) => Padding(padding: EdgeInsets.only(right: margin), child: widget);
+Widget padVertical(Widget widget, {double margin = MARGIN}) => Padding(padding: EdgeInsets.symmetric(vertical: margin), child: widget);
+Widget padHorizontal(Widget widget, {double margin = MARGIN}) => Padding(padding: EdgeInsets.symmetric(horizontal: margin), child: widget);

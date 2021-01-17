@@ -4,6 +4,7 @@ export 'src/app.dart';
 export 'src/button.dart';
 export 'src/card.dart';
 export 'src/dialog.dart';
+export 'src/flex.dart';
 export 'src/functions.dart';
 export 'src/icon.dart';
 export 'src/icons.dart';
