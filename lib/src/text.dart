@@ -77,13 +77,14 @@ class _ATextFieldState extends State<ATextField> {
     final EdgeInsetsGeometry padding = EdgeInsets.symmetric(vertical: DEFAULT_MARGIN * 0.75, horizontal: DEFAULT_MARGIN * 0.5);
     Widget textField;
     int limit = widget.limit ?? 999;
+    final TextCapitalization capitalization = widget.capitalization ?? TextCapitalization.none;
 
     if (Platform.isIOS) {
-      textField = CupertinoTextField(inputFormatters: [new LengthLimitingTextInputFormatter(limit)], padding: padding, controller: _controller, placeholder: widget.placeholder, maxLength: limit, keyboardType: widget.inputType, enabled: widget.enabled, textCapitalization: widget.capitalization);
+      textField = CupertinoTextField(inputFormatters: [new LengthLimitingTextInputFormatter(limit)], padding: padding, controller: _controller, placeholder: widget.placeholder, maxLength: limit, keyboardType: widget.inputType, enabled: widget.enabled, textCapitalization: capitalization);
     } else {
       final OutlineInputBorder border = OutlineInputBorder(borderSide: BorderSide(color: getColor(context, ColorType.DIVIDER)));
       final InputDecoration decoration = InputDecoration(hintStyle: TextStyle(color: getColor(context, ColorType.DIVIDER)), hintText: widget.placeholder, border: border, focusedBorder: border, enabledBorder: border, disabledBorder: border, counterText: "");
-      textField = TextField(inputFormatters: [new LengthLimitingTextInputFormatter(limit)], decoration: decoration, controller: _controller, maxLength: limit, keyboardType: widget.inputType, enabled: widget.enabled, textCapitalization: widget.capitalization, style: TextStyle(color: getColor(context, ColorType.TEXT)));
+      textField = TextField(inputFormatters: [new LengthLimitingTextInputFormatter(limit)], decoration: decoration, controller: _controller, maxLength: limit, keyboardType: widget.inputType, enabled: widget.enabled, textCapitalization: capitalization, style: TextStyle(color: getColor(context, ColorType.TEXT)));
     }
 
     return textField;
