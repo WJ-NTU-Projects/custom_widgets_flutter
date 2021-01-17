@@ -9,7 +9,7 @@ import '../custom_widgets_wj.dart';
 //========================
 // Dialogs & Modal Sheets
 //========================
-Future<void> showModalSheet(BuildContext context, WidgetBuilder builder, {bool root = true, bool scroll = true}) => Platform.isIOS ? showCupertinoModalPopup(context: context, builder: builder, useRootNavigator: root) : showModalBottomSheet(context: context, builder: builder, useRootNavigator: root, isScrollControlled: scroll);
+Future<void> showModalSheet(BuildContext context, WidgetBuilder builder, {bool root = true, bool scroll = true}) => Platform.isIOS ? showCupertinoModalPopup(context: context, builder: builder, useRootNavigator: root) : showModalBottomSheet(context: context, builder: builder, useRootNavigator: root, isScrollControlled: scroll, backgroundColor: Colors.transparent);
 Future<void> showProgressDialog(BuildContext context) => showADialog(context, (context) => ADialog(DialogType.PROGRESS));
 Future<void> hideProgressDialog(BuildContext context) async => Navigator.of(context).pop();
 Future<void> showADialog(BuildContext context, WidgetBuilder builder) => Platform.isIOS ? showCupertinoDialog(context: context, builder: builder, useRootNavigator: false) : showDialog(context: context, builder: builder, useRootNavigator: false);
