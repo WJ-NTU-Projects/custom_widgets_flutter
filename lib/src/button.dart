@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../custom_widgets_wj.dart';
 import 'external/cupertino_list_tile.dart';
 
-EdgeInsetsGeometry get _standardButtonMargin => EdgeInsets.symmetric(vertical: DEFAULT_MARGIN * 0.5);
+EdgeInsetsGeometry get _standardButtonMargin => EdgeInsets.zero;
 EdgeInsetsGeometry get _standardButtonPadding => EdgeInsets.symmetric(vertical: DEFAULT_MARGIN, horizontal: DEFAULT_MARGIN * 3);
 TextStyle _getTextStyle(BuildContext context, {bool google = false}) => getButtonTextStyle(context).copyWith(color: getColor(context, google ? ColorType.TEXT : ColorType.BUTTON_TEXT));
 Color _getNullIconColor(BuildContext context, Function() onPressed) => (onPressed == null ? getColor(context, ColorType.TEXT) : null);
@@ -78,7 +78,7 @@ class AVerticalButton extends StatelessWidget {
       AText(label, textAlign: TextAlign.center, maxLines: 2, style: _getTextStyle(context, google: onPressed == null)),
     ]);
 
-    final EdgeInsetsGeometry margin = EdgeInsets.symmetric(vertical: DEFAULT_MARGIN * 0.5);
+    final EdgeInsetsGeometry margin = EdgeInsets.zero;
     final EdgeInsetsGeometry padding = EdgeInsets.symmetric(vertical: DEFAULT_MARGIN, horizontal: DEFAULT_MARGIN);
     Widget buttonWidget;
 
@@ -175,13 +175,12 @@ class ASquareButton extends StatelessWidget {
   final Color iconColor;
   final Color buttonColor;
   final Function() onPressed;
-  final double margin;
-  ASquareButton({@required this.icon, this.iconColor, this.buttonColor, this.onPressed, this.margin});
+  ASquareButton({@required this.icon, this.iconColor, this.buttonColor, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     final Widget child = AnIcon(icon, button: true, color: iconColor ?? _getNullIconColor(context, onPressed));
-    final EdgeInsetsGeometry margin = EdgeInsets.symmetric(vertical: this.margin ?? DEFAULT_MARGIN * 0.5, horizontal: this.margin ?? 0);
+    final EdgeInsetsGeometry margin = EdgeInsets.zero;
     final EdgeInsetsGeometry padding = EdgeInsets.symmetric(vertical: DEFAULT_MARGIN * 0.25, horizontal: DEFAULT_MARGIN * 0.25);
     Widget buttonWidget;
 
@@ -222,13 +221,12 @@ class ADigitButton extends StatelessWidget {
   final String digit;
   final Color buttonColor;
   final Function() onPressed;
-  final double margin;
-  ADigitButton({@required this.digit, this.buttonColor, this.onPressed, this.margin});
+  ADigitButton({@required this.digit, this.buttonColor, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     final Widget child = AText(digit, textAlign: TextAlign.center, maxLines: 1, style: _getTextStyle(context, google: onPressed == null));
-    final EdgeInsetsGeometry margin = EdgeInsets.symmetric(vertical: this.margin ?? DEFAULT_MARGIN * 0.5, horizontal: this.margin ?? 0);
+    final EdgeInsetsGeometry margin = EdgeInsets.zero;
     final EdgeInsetsGeometry padding = EdgeInsets.all(DEFAULT_MARGIN * 0.25);
     Widget buttonWidget;
 
