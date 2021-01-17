@@ -56,7 +56,8 @@ class ATextField extends StatefulWidget {
   final TextInputType inputType;
   final int limit;
   final bool enabled;
-  ATextField({@required this.controller, this.placeholder, this.inputType, this.limit, this.enabled = true});
+  final TextCapitalization capitalization;
+  ATextField({@required this.controller, this.placeholder, this.inputType, this.limit, this.enabled = true, this.capitalization});
 
   @override
   _ATextFieldState createState() => _ATextFieldState();
@@ -78,11 +79,11 @@ class _ATextFieldState extends State<ATextField> {
     int limit = widget.limit ?? 999;
 
     if (Platform.isIOS) {
-      textField = CupertinoTextField(inputFormatters: [new LengthLimitingTextInputFormatter(limit)], padding: padding, controller: _controller, placeholder: widget.placeholder, maxLength: limit, keyboardType: widget.inputType, enabled: widget.enabled);
+      textField = CupertinoTextField(inputFormatters: [new LengthLimitingTextInputFormatter(limit)], padding: padding, controller: _controller, placeholder: widget.placeholder, maxLength: limit, keyboardType: widget.inputType, enabled: widget.enabled, textCapitalization: widget.capitalization);
     } else {
       final OutlineInputBorder border = OutlineInputBorder(borderSide: BorderSide(color: getColor(context, ColorType.DIVIDER)));
       final InputDecoration decoration = InputDecoration(hintStyle: TextStyle(color: getColor(context, ColorType.DIVIDER)), hintText: widget.placeholder, border: border, focusedBorder: border, enabledBorder: border, disabledBorder: border, counterText: "");
-      textField = TextField(inputFormatters: [new LengthLimitingTextInputFormatter(limit)], decoration: decoration, controller: _controller, maxLength: limit, keyboardType: widget.inputType, enabled: widget.enabled, style: TextStyle(color: getColor(context, ColorType.TEXT)));
+      textField = TextField(inputFormatters: [new LengthLimitingTextInputFormatter(limit)], decoration: decoration, controller: _controller, maxLength: limit, keyboardType: widget.inputType, enabled: widget.enabled, textCapitalization: widget.capitalization, style: TextStyle(color: getColor(context, ColorType.TEXT)));
     }
 
     return textField;
