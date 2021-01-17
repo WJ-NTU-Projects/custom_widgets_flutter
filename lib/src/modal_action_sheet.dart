@@ -80,7 +80,7 @@ class ModalContainer extends StatelessWidget {
     final Radius radius = Radius.circular(DEFAULT_MARGIN * 0.5);
 
     return Container(
-      decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: radius, topRight: radius)),
+      decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: radius, topRight: radius), color: getColor(context, ColorType.MODAL)),
       padding: padding,
       width: size.width * (width ?? 1.0),
       height: this.height != null ? size.height * height : null,
