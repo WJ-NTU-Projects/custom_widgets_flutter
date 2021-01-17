@@ -15,6 +15,7 @@ class AScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (Platform.isAndroid) fixNavigationBarColor(context);
     final Widget defaultBodyWidget = SafeArea(child: body);
 
     if (Platform.isIOS) {
