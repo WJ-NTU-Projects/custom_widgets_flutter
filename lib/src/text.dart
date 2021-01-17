@@ -80,7 +80,7 @@ class _ATextFieldState extends State<ATextField> {
     if (Platform.isIOS) {
       textField = CupertinoTextField(inputFormatters: [new LengthLimitingTextInputFormatter(limit)], padding: padding, controller: _controller, placeholder: widget.placeholder, maxLength: limit, keyboardType: widget.inputType, enabled: widget.enabled);
     } else {
-      final InputDecoration decoration = InputDecoration(contentPadding: padding, hintText: widget.placeholder, border: OutlineInputBorder(), focusedBorder: OutlineInputBorder());
+      final InputDecoration decoration = InputDecoration(contentPadding: padding, hintText: widget.placeholder, border: OutlineInputBorder(), focusedBorder: OutlineInputBorder(), counterText: "");
       textField = TextField(inputFormatters: [new LengthLimitingTextInputFormatter(limit)], decoration: decoration, controller: _controller, maxLength: limit, keyboardType: widget.inputType, enabled: widget.enabled);
     }
 
