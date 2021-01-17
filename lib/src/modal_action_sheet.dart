@@ -72,7 +72,7 @@ class ModalContainer extends StatelessWidget {
   final double width;
   final double height;
   final EdgeInsetsGeometry padding;
-  ModalContainer({@required this.child, @required this.height, this.width, this.padding});
+  ModalContainer({@required this.child, this.height, this.width, this.padding});
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +83,7 @@ class ModalContainer extends StatelessWidget {
       decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: radius, topRight: radius)),
       padding: padding,
       width: size.width * (width ?? 1.0),
-      height: size.height * height,
+      height: this.height != null ? size.height * height : null,
       child: child,
     );
   }
