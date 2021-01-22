@@ -77,7 +77,7 @@ class ModalContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    final Radius radius = Radius.circular(DEFAULT_MARGIN * 0.5);
+    final Radius radius = Radius.circular(DEFAULT_MARGIN);
 
     return Container(
       decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: radius, topRight: radius), color: getColor(context, ColorType.MODAL)),
