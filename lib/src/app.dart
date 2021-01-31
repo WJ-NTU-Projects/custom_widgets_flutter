@@ -9,7 +9,9 @@ import '../custom_widgets_wj.dart';
 class AnApp extends StatelessWidget {
   final String title;
   final Widget home;
-  AnApp({@required this.title, @required this.home});
+  final Iterable<LocalizationsDelegate<dynamic>> localizationsDelegates;
+  final Iterable<Locale> supportedLocales;
+  AnApp({@required this.title, @required this.home, this.localizationsDelegates, this.supportedLocales});
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +48,27 @@ class AnApp extends StatelessWidget {
       );
     }
 
-    return Platform.isIOS ? CupertinoApp(title: title, home: home, theme: theme) : MaterialApp(title: title, home: home, theme: theme, darkTheme: darkTheme);
+    Widget app;
+
+    if (Platform.isIOS) {
+      app = CupertinoApp(
+        localizationsDelegates: localizationsDelegates,
+        supportedLocales: supportedLocales,
+        title: title,
+        home: home,
+        theme: theme,
+      );
+    } else {
+      app = MaterialApp(
+        localizationsDelegates: localizationsDelegates,
+        supportedLocales: supportedLocales,
+        title: title,
+        home: home,
+        theme: theme,
+        darkTheme: darkTheme,
+      );
+    }
+
+    return app;
   }
 }
