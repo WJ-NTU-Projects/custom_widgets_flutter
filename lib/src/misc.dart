@@ -47,3 +47,19 @@ class AnErrorUI extends StatelessWidget {
     return Padding(padding: EdgeInsets.all(DEFAULT_MARGIN), child: Center(child: AText("Something went wrong.")));
   }
 }
+
+class GestureField extends StatelessWidget {
+  final Widget child;
+  final Function() onTap;
+  GestureField({@required this.child, this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    final Border border = Border.all(color: getColor(context, ColorType.DIVIDER));
+    final BorderRadius radius = BorderRadius.all(Radius.circular(MARGIN_Q));
+    final BoxDecoration decoration = BoxDecoration(border: border, borderRadius: radius);
+    final EdgeInsetsGeometry padding = EdgeInsets.symmetric(vertical: DEFAULT_MARGIN * 0.75, horizontal: DEFAULT_MARGIN * 0.5);
+    final Widget child = Container(child: Padding(padding: padding, child: Center(child: this.child)), decoration: decoration);
+    return GestureDetector(child: child, onTap: this.onTap);
+  }
+}
