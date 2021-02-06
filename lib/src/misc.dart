@@ -63,3 +63,27 @@ class GestureField extends StatelessWidget {
     return GestureDetector(child: child, onTap: this.onTap);
   }
 }
+
+class APicker extends StatelessWidget {
+  final List<dynamic> values;
+  final int indexIOS;
+  final dynamic valueAndroid;
+  final Function() onTapIOS;
+  final Function(dynamic v) onChangedAndroid;
+  APicker({@required this.values, @required this.indexIOS, @required this.valueAndroid, @required this.onTapIOS, @required this.onChangedAndroid});
+
+  @override
+  Widget build(BuildContext context) {
+    Widget body;
+
+    if (Platform.isIOS) {
+      final Widget text = AText(values[indexIOS], style: TextStyle(color: getColor(context, ColorType.ACCENT)));
+      body = GestureField(child: text, onTap: onTapIOS);
+    } else {
+      final List<DropdownMenuItem> pickerChildren = values.map((v) => DropdownMenuItem(child: AText(v.toString()), value: v));
+      body = DropdownButton(value: valueAndroid, items: pickerChildren, onChanged: onChangedAndroid);
+    }
+
+    return body;
+  }
+}
