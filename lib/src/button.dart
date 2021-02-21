@@ -195,15 +195,16 @@ class ASquareButton extends StatelessWidget {
 }
 
 class AFloorButton extends StatelessWidget {
-  final IconData icon;
-  final Color iconColor;
+  final String label;
+  final Color color;
   final Color buttonColor;
   final Function() onPressed;
-  AFloorButton({@required this.icon, this.iconColor, this.buttonColor, this.onPressed});
+  AFloorButton({@required this.label, this.color, this.buttonColor, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
-    final Widget child = AnIcon(icon, button: true, color: iconColor ?? _getNullIconColor(context, onPressed));
+    final Color textColor = color ?? _getNullIconColor(context, onPressed);
+    final Widget child = AText(label, style: TextStyle(color: textColor));
     final EdgeInsetsGeometry padding = EdgeInsets.symmetric(vertical: DEFAULT_MARGIN * 0.25, horizontal: DEFAULT_MARGIN * 0.25);
     Widget buttonWidget;
 
