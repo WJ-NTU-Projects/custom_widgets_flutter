@@ -203,15 +203,15 @@ class AFloorButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color textColor = (color ?? _getNullIconColor(context, onPressed)) ?? getColor(context, ColorType.BUTTON_TEXT);
+    final Color textColor = (color ?? _getNullIconColor(context, onPressed));
     final Widget child = AText(label, style: TextStyle(color: textColor));
     final EdgeInsetsGeometry padding = EdgeInsets.symmetric(vertical: DEFAULT_MARGIN * 0.25, horizontal: DEFAULT_MARGIN * 0.25);
     Widget buttonWidget;
 
     if (Platform.isIOS) {
-      buttonWidget = CupertinoButton(borderRadius: BorderRadius.zero, padding: padding, child: child, onPressed: onPressed, color: buttonColor ?? (onPressed == null ? getColor(context, ColorType.INACTIVE) : CupertinoTheme.of(context).primaryColor));
+      buttonWidget = CupertinoButton(borderRadius: BorderRadius.zero, padding: padding, child: child, onPressed: onPressed, color: buttonColor ?? (onPressed == null ? getColor(context, ColorType.INACTIVE) : getColor(context, ColorType.CARD)));
     } else {
-      buttonWidget = RaisedButton(padding: padding, child: child, onPressed: onPressed, color: buttonColor ?? (onPressed == null ? getColor(context, ColorType.INACTIVE) : null));
+      buttonWidget = RaisedButton(padding: padding, child: child, onPressed: onPressed, color: buttonColor ?? (onPressed == null ? getColor(context, ColorType.INACTIVE) : getColor(context, ColorType.CARD)));
     }
 
     return Container(margin: EdgeInsets.zero, child: buttonWidget, width: 48.0, height: 48.0);
