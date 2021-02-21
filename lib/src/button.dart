@@ -203,7 +203,7 @@ class AFloorButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color textColor = color ?? _getNullIconColor(context, onPressed);
+    final Color textColor = (color ?? _getNullIconColor(context, onPressed)) ?? getColor(context, ColorType.BUTTON_TEXT);
     final Widget child = AText(label, style: TextStyle(color: textColor));
     final EdgeInsetsGeometry padding = EdgeInsets.symmetric(vertical: DEFAULT_MARGIN * 0.25, horizontal: DEFAULT_MARGIN * 0.25);
     Widget buttonWidget;
