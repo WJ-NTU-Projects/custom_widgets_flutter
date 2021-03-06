@@ -211,7 +211,7 @@ class AFloorButton extends StatelessWidget {
     if (Platform.isIOS) {
       buttonWidget = CupertinoButton(borderRadius: BorderRadius.zero, padding: padding, child: child, onPressed: onPressed, color: buttonColor ?? (onPressed == null ? getColor(context, ColorType.INACTIVE) : getColor(context, ColorType.CARD)));
     } else {
-      buttonWidget = RaisedButton(padding: padding, child: child, onPressed: onPressed, color: buttonColor ?? (onPressed == null ? getColor(context, ColorType.INACTIVE) : getColor(context, ColorType.CARD)));
+      buttonWidget = RaisedButton(shape: BeveledRectangleBorder(borderRadius: BorderRadius.zero), padding: padding, child: child, onPressed: onPressed, color: buttonColor ?? (onPressed == null ? getColor(context, ColorType.INACTIVE) : getColor(context, ColorType.CARD)));
     }
 
     return Container(margin: EdgeInsets.zero, child: buttonWidget, width: 48.0, height: 48.0);
