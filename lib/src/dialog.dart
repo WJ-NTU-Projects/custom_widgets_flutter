@@ -30,7 +30,12 @@ class ADialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _actionList.clear();
-    if (type == DialogType.PROGRESS) return Center(child: AProgressIndicator());
+
+    if (type == DialogType.PROGRESS) {
+      if (message.isEmpty) return Center(child: AProgressIndicator());
+      return Center(child: AColumn([AProgressIndicator(), AText(message, style: TextStyle(color: Colors.white))], alignment: CrossAxisAlignment.center));
+    }
+
     final Color textColor = MediaQuery.of(context).platformBrightness == Brightness.dark ? ACCENT_COLOR_DARK : ACCENT_COLOR;
 
     if (type == DialogType.OK) {
