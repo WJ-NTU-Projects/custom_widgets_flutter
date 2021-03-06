@@ -1,12 +1,11 @@
 name: custom_widgets_wj
 description: Custom widgets built by WJ.
-version: 0.6.4
+version: 1.0.0
 author: WJ
 homepage: http://github.com
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
-  flutter: ">=1.17.0 <2.0.0"
 
 dependencies:
   flutter:
